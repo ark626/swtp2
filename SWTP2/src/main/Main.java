@@ -7,7 +7,9 @@ import spellchecker.Spellchecker;
 import dictionary.Dictfactory;
 import dictionary.Dictionary;
 import algos.Algofactory;
+import algos.Algofactory.Algorithm;
 import algos.Distance;
+import algos.LevenshteinDamerau;
 
 public class Main {
 
@@ -27,9 +29,9 @@ public class Main {
 			ArrayList<String> res = Spellchecker.spellchecker(Suchtext, 1, Dist, Dict);
 			Loaded = System.currentTimeMillis();
 			for(String text:res){
-					System.out.println(text);
+					System.out.println(text+" hat eine Distanz von "+(Dist.computeDistance(Suchtext, text))+" zu "+Suchtext);
 			}
-			System.out.println(res.size());
+			System.out.println("Gefundene Vorschläge: " +res.size());
 			System.out.println("Ladezeit für die Suche: "+(Loaded-Started));
 			Suchtext =s.nextLine(); 
 		}
