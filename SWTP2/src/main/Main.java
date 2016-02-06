@@ -2,14 +2,11 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import spellchecker.Spellchecker;
 import dictionary.Dictfactory;
-import dictionary.Dictionary;
+import dictionary.I_Dictionary;
 import algos.Algofactory;
-import algos.Algofactory.Algorithm;
-import algos.Distance;
-import algos.LevenshteinDamerau;
+import algos.I_Editdistance;
 
 public class Main {
 
@@ -17,16 +14,18 @@ public class Main {
 		
 		System.out.println("Gestartet");
 		long Started = System.currentTimeMillis();
-		Dictionary Dict = Dictfactory.getDictionary(Dictfactory.Dict.Huge);
-		Distance Dist = Algofactory.getAlgorithm(Algofactory.Algorithm.DamereauLevenshtein);
+		I_Dictionary Dict = Dictfactory.getDictionary(Dictfactory.Dict.Huge);
+		I_Editdistance Dist = Algofactory.getAlgorithm(Algofactory.Algorithm.DamereauLevenshtein);
+		Spellchecker sc = Spellchecker.getInstance();
 		Scanner s = new Scanner(System.in);
 		long Loaded = System.currentTimeMillis();
+		ArrayList<String> res =null;
 		
 		System.out.println("Ladezeit für die Bibliothek: "+(Loaded-Started));
 		String Suchtext =s.nextLine(); 
 		while(!Suchtext.equals("escape")){
 			Started = System.currentTimeMillis();
-			ArrayList<String> res = Spellchecker.spellchecker(Suchtext, 1, Dist, Dict);
+			res = sc.spellchecker(Suchtext, 1, Dist, Dict);
 			Loaded = System.currentTimeMillis();
 			for(String text:res){
 					System.out.println(text+" hat eine Distanz von "+(Dist.computeDistance(Suchtext, text))+" zu "+Suchtext);
@@ -38,7 +37,7 @@ public class Main {
 		s.close();
 	}
 
-	public static void spellchecker(String s,int delta,Distance Dist,Dictionary Dict){	
+	public static void spellchecker(String s,int delta,I_Editdistance Dist,I_Dictionary Dict){	
 }
 	
 }

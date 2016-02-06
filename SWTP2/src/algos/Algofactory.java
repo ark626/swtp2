@@ -12,8 +12,8 @@ public class Algofactory {
 		}
 
 		
-		public static Distance getAlgorithm(Algorithm algorithm) {
-			Distance Algo = null;
+		public static I_Editdistance getAlgorithm(Algorithm algorithm) {
+			I_Editdistance Algo = null;
 			switch (algorithm) {
 			
 			case Levenshtein:

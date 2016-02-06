@@ -2,7 +2,7 @@ package dictionary;
 
 import java.util.List;
 
-public class Dictionary extends TrieMap {
+public class Dictionary implements I_Dictionary {
 	public TrieMap Trie;
 	public HashList Hash;
 	
@@ -31,5 +31,7 @@ public class Dictionary extends TrieMap {
 		
 		return this.Hash.getWordsOfLength(length);
 	}
+
+
 
 }

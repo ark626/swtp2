@@ -2,26 +2,37 @@ package spellchecker;
 
 import java.util.ArrayList;
 
-import algos.Distance;
-import dictionary.Dictionary;
+
+
+
+import algos.I_Editdistance;
+import dictionary.I_Dictionary;
 
 public class Spellchecker {
 	
-	public static ArrayList<String> spellchecker(String s,int delta,Distance Dist,Dictionary Dict){
+	private static class SingletonHelper {
+		private static final Spellchecker INSTANCE = new Spellchecker();
+	}
+
+	public static Spellchecker getInstance() {
+		return SingletonHelper.INSTANCE;
+	}
+	
+	public  ArrayList<String> spellchecker(String s,int delta,I_Editdistance Dist,I_Dictionary dict){
 
 		ArrayList<String> result = new ArrayList<String>();
 		ArrayList<String> res = new ArrayList<String>();
 		
 
-		if(!Dict.contains(s)){
-			for(String text:Dict.Hash.getWordsOfLength(s.length())){
+		if(!dict.contains(s)){
+			for(String text:dict.getWords(s.length())){
 				result.add(text);
 			}
-			for(String text:Dict.Hash.getWordsOfLength(s.length()+1)){
+			for(String text:dict.getWords(s.length()+1)){
 				result.add(text);
 			}
 			if(s.length() >= 1){
-			for(String text:Dict.Hash.getWordsOfLength(s.length()-1)){
+			for(String text:dict.getWords(s.length()-1)){
 				result.add(text);
 			}
 			}

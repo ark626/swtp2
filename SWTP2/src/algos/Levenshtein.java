@@ -1,6 +1,6 @@
 package algos;
 
-public class Levenshtein implements Distance {
+public class Levenshtein implements I_Editdistance {
 
 	public final static int editDistance(String from, String to){
 		
