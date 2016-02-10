@@ -3,7 +3,7 @@ package dictionary;
 import java.util.List;
 
 public class Dictionary implements I_Dictionary {
-	public TrieMap Trie;
+	public I_TrieMap Trie;
 	public HashList Hash;
 	
 	public Dictionary(){
